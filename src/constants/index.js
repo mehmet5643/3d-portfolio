@@ -3,6 +3,7 @@ import {
     backend,
     creator,
     web,
+    blockchain,
     javascript,
     typescript,
     html,
@@ -47,10 +48,10 @@ import {
     },
     {
       title: "Blockchain Developer",
-      icon: mobile,
+      icon: blockchain,
     },
     {
-      title: "Python Developer",
+      title: "Solidity Developer",
       icon: backend,
     },
     {
