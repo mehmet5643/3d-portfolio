@@ -21,6 +21,10 @@ import blockchain from "./blockchain.png"
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import waffle from "./tech/waffle.svg"
+import solidity from "./tech/solidity.svg"
+import hardhat from "./tech/hardhat.svg"
+
 
 import company from "./company/company.png";
 import bionluk from "./company/bionluk.jpeg"
@@ -45,6 +49,10 @@ export {
   docker,
   figma,
   git,
+  waffle,
+  solidity,
+  hardhat,
+
   html,
   javascript,
   mongodb,

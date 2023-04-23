@@ -6,6 +6,10 @@ import {
     blockchain,
     javascript,
     typescript,
+    solidity,
+    hardhat,  
+
+    waffle,
     html,
     css,
     company,
@@ -89,7 +93,7 @@ import {
       name: "Tailwind CSS",
       icon: tailwind,
     },
-    {
+     {
       name: "Node JS",
       icon: nodejs,
     },
@@ -98,20 +102,21 @@ import {
       icon: mongodb,
     },
     {
-      name: "Three JS",
-      icon: threejs,
+      name: "Solidity",
+      icon: solidity,
     },
     {
-      name: "git",
+      name: "Git",
       icon: git,
     },
+    
     {
-      name: "figma",
-      icon: figma,
+      name: "Hardhat",
+      icon: hardhat,
     },
     {
-      name: "docker",
-      icon: docker,
+      name: "Waffle",
+      icon: waffle,
     },
   ];
   
