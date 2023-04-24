@@ -12,6 +12,7 @@ import {
     waffle,
     html,
     css,
+    mern,
     company,
     reactjs,
     redux,
@@ -208,9 +209,31 @@ import {
           name: "stake",
           color: "pink-text-gradient",
         },
+        
       ],
       image: stake,
       source_code_link: "https://github.com/mehmet5643/stakeWeb3",
+    },{
+      name: "Ai Mern Image Generation",
+      description:
+        "Where you can create amazing pictures with AI using MERN DALLE, a state-of-the-art artificial intelligence model. You can also share your creations with the community and get feedback from other users. Whether you want to make art, memes, logos or anything else, MERN DALLE can help you unleash your creativity.",
+      tags: [
+        {
+          name: "react",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "tailwindcss",
+          color: "green-text-gradient",
+        },
+        {
+          name: "dalle",
+          color: "pink-text-gradient",
+        },
+        
+      ],
+      image: mern,
+      source_code_link: "https://github.com/mehmet5643/ai-mern-image-generation",
     },
     
   ];
