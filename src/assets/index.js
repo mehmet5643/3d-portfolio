@@ -8,6 +8,7 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 import stake from "./stake.png"
 import mern from "./mern.png"
+import recycle from "./recycle.png"
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -45,6 +46,7 @@ export {
   mobile,
   mern,
   web,
+  recycle,
   github,
   menu,
   close,

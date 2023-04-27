@@ -9,6 +9,7 @@ import {
     solidity,
     hardhat,  
     stake,
+    recycle,
     waffle,
     html,
     css,
@@ -192,6 +193,28 @@ import {
   ];
   
   const projects = [
+    {
+      name: "Zero waste Web 3.0",
+      description:
+      "Recycle Token is a cryptocurrency rewarded to users who recycle. The Recycle Token is created and operated via smart contracts. In the Recycle Token system, users drop waste objects on active devices for recycling. Active devices recognize waste objects with image processing technology and add points to the user's account. In the Recycle Token system, users drop waste objects on active devices for recycling. Active devices recognize waste objects with image processing technology and add points to the user's account.",
+      tags: [
+        {
+          name: "solidity",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "hardhat",
+          color: "green-text-gradient",
+        },
+        {
+          name: "machineLearning",
+          color: "pink-text-gradient",
+        },
+        
+      ],
+      image: recycle,
+      source_code_link: "https://github.com",
+    },
     {
       name: "Stake Web 3.0",
       description:
