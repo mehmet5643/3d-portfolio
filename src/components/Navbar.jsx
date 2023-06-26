@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { parseAddress } from "../utils/parseAddress";
+import { ethers } from "ethers";
+
+import Web3Modal from "web3modal";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
@@ -8,6 +12,45 @@ import { logo, menu, close } from "../assets";
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+  const [account, setAccount] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500 && window.scrollY < 1400) {
+        setActive("About");
+      } else if (window.scrollY > 1401 && window.scrollY < 4500) {
+        setActive("Work");
+      } else if (window.scrollY > 4500 && window.scrollY < 6000) {
+        setActive("Contact");
+      } else {
+        setActive("");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const connectWallet = async () => {
+    try {
+      const providerOptions = {
+       
+
+      };
+      const web3Modal = new Web3Modal({
+        network: "mainnet",
+        cacheProvider: true,
+        providerOptions,
+      });
+      const provider = await web3Modal.connect();
+      const web3 = new ethers.providers.Web3Provider(provider);
+      const signer = web3.getSigner();
+      const address = await signer.getAddress();
+      setAccount(address);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <nav
       className={`
@@ -29,6 +72,7 @@ const Navbar = () => {
           </p>
         </Link>
         <ul className="list-none hidden sm:flex flex-row gap-10">
+          <li></li>
           {navLinks.map((link) => (
             <li
               key={link.id}
@@ -40,6 +84,12 @@ const Navbar = () => {
               <a href={`#${link.id}`}>{link.title}</a>
             </li>
           ))}
+          <button
+            onClick={connectWallet}
+            className="text-white text-[18px] font-medium cursor-pointer"
+          >
+            {account ? parseAddress(account) : "Connect Wallet"}
+          </button>
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
@@ -67,6 +117,12 @@ const Navbar = () => {
                   <a href={`#${link.id}`}>{link.title}</a>
                 </li>
               ))}
+              <button
+                onClick={connectWallet}
+                className="text-white text-[18px] font-medium cursor-pointer"
+              >
+                {account ? parseAddress(account) : "Connect Wallet"}
+              </button>
             </ul>
           </div>
         </div>
