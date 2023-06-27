@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { parseAddress } from "../utils/parseAddress";
-import { ethers } from "ethers";
-
-import Web3Modal from "web3modal";
+import { useSetAccount,useContractFunctions } from "../hooks";
+import { useSelector } from "react-redux";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
@@ -12,7 +11,11 @@ import { logo, menu, close } from "../assets";
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
-  const [account, setAccount] = useState("");
+  const [bought,setBought]=useState(false)
+  const {buyCoffee,getMemos}= useContractFunctions();
+  const connectAccount = useSetAccount();
+  const account = useSelector((state) => state.accounts.account);
+  const memos = useSelector((state) => state.accounts.memos);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,26 +32,12 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const connectWallet = async () => {
-    try {
-      const providerOptions = {
-};
-      const web3Modal = new Web3Modal({
-        network: "mainnet",
-        cacheProvider: true,
-        providerOptions,
-      });
-      const provider = await web3Modal.connect();
-      const web3 = new ethers.providers.Web3Provider(provider);
-      const signer = web3.getSigner();
-      const address = await signer.getAddress();
-      setAccount(address);
-    } catch (err) {
-      console.log(err);
+  useEffect(()=>{
+    const handleBuyCoffee=async ()=>{
+      const memos = await getMemos();
     }
-  };
-
+    handleBuyCoffee()
+  },[bought])
   return (
     <nav
       className={`
@@ -83,11 +72,12 @@ const Navbar = () => {
             </li>
           ))}
           <button
-            onClick={connectWallet}
+            onClick={() => connectAccount()}
             className="text-white text-[18px] font-medium cursor-pointer"
           >
-            {account ? parseAddress(account) : "Connect Wallet"}
+            {account ? parseAddress(account,5) : "Connect Wallet"}
           </button>
+          
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
@@ -116,10 +106,10 @@ const Navbar = () => {
                 </li>
               ))}
               <button
-                onClick={connectWallet}
+                onClick={() => connectAccount()}
                 className="text-white text-[18px] font-medium cursor-pointer"
               >
-                {account ? parseAddress(account) : "Connect Wallet"}
+                {account ? parseAddress(account,5) : "Connect Wallet"}
               </button>
             </ul>
           </div>

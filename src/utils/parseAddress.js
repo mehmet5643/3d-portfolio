@@ -1,7 +1,7 @@
-export const parseAddress = (address) => {
+export const parseAddress = (address,number) => {
     return (
-      address?.substring?.(0, 5) +
+      address?.substring?.(0, number) +
       "..." +
-      address?.substring?.(address?.length - 5)
+      address?.substring?.(address?.length - number)
     );
   };
