@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   account: null,
+  memos: [],
 };
 
 export const accountsSlice = createSlice({
