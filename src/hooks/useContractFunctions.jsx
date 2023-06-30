@@ -18,21 +18,19 @@ const useContractFunctions = () => {
 
   const getMemos = async () => {
     const memos = await contract.getMemos();
-    dispatch(setMemos(memos))
+    printMemos(memos)
   };
-  const printMemos = async (memos) => {
-    for (const memo of memos) {
+  const printMemos = async (_memos) => {
+    const memos= []    
+    for (const memo of _memos) {
       const tipper = memo.name;
       const tipperAddress = memo.from;
       const message = memo.message;
-      dispatch(
-        setMemos({
-          tipper,
-          tipperAddress,
-          message,
-        })
+     
+      memos.push({ tipper, tipperAddress, message }
       );
     }
+    dispatch(setMemos(memos));
   };
 
   return { buyCoffee, getMemos };
