@@ -7,7 +7,10 @@ const useContractFunctions = () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
+  if(!window.ethereum){
+    console.log("Install Metamask");
+    return;
+  }
   const buyCoffee = async (name, message) => {
     const buyCoffee = await contract.buyCoffee(name, message, {
       value: ethers.utils.parseUnits("0.01", "ether"),
