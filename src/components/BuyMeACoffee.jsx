@@ -34,10 +34,15 @@ const FeedbackCard = ({ index, name, message,address }) => (
 );
 
 const BuyMeACoffee = () => {
+  const [haveMetamask,setHaveMetamask]=useState(false)
+  
+  if(window.ethereum){
+    setHaveMetamask(true)
+    const connectAccount = useSetAccount();
+    const {buyCoffee,getMemos}= useContractFunctions();
+  }
   const memos = useSelector((state) => state.accounts.memos);
   const account = useSelector((state) => state.accounts.account);
-  const connectAccount = useSetAccount();
-  const {buyCoffee,getMemos}= useContractFunctions();
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
@@ -56,16 +61,19 @@ const BuyMeACoffee = () => {
   const handleSubmit= (e)=>{
     e.preventDefault();
     setLoading(true);
-    buyCoffee(form.name,form.message)
-    .then((res) => {
-      setLoading(false);
-      setForm({
-        name: "",
-        message: "",
-      });
-      getMemos();
+    if(haveMetamask){
+
+      buyCoffee(form.name,form.message)
+      .then((res) => {
+        setLoading(false);
+        setForm({
+          name: "",
+          message: "",
+        });
+        getMemos();
+      })
     }
-    )
+    
   }
   return (
     <div className={`mt-12 bg-black-100 rounded-[20px]`}>

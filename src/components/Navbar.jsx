@@ -12,11 +12,16 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [bought,setBought]=useState(false)
-  const {buyCoffee,getMemos}= useContractFunctions();
-  const connectAccount = useSetAccount();
+  const [haveMetamask,setHaveMetamask]=useState(false)
   const account = useSelector((state) => state.accounts.account);
   const memos = useSelector((state) => state.accounts.memos);
-
+  
+  if(window.ethereum){
+    setHaveMetamask(true)
+    const {buyCoffee,getMemos}= useContractFunctions();
+    const connectAccount = useSetAccount();
+  }
+ 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 500 && window.scrollY < 1400) {
@@ -32,12 +37,7 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  useEffect(()=>{
-    const handleBuyCoffee=async ()=>{
-      const memos = await getMemos();
-    }
-    handleBuyCoffee()
-  },[bought])
+ 
   return (
     <nav
       className={`
